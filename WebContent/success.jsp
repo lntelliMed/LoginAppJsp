@@ -9,12 +9,22 @@
 <body>
 <h3>Login Successful!</h3>
 
-<%
+<%-- <%
 //User user = (User) session.getAttribute("user");
 User user = (User) request.getAttribute("user");
-%>
+%> --%>
+
+<jsp:useBean id="user" class="com.intellimed.dto.User" scope="request">
+	<jsp:setProperty property="userName" name="user" value="NewUser"/>
+</jsp:useBean>
+
 
 <br>
-Hello <%=user.getUserName() %>
-</body>
+<%-- Hello <%=user.getUserName() %>
+ --%>
+Hello <jsp:getProperty property="userName" name="user"/>
+ 
+ 
+ 
+ </body>
 </html>
