@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.intellimed.service.LoginService;
+
 /**
  * Servlet implementation class LoginServlet
  */
@@ -20,6 +22,19 @@ public class LoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("password");
+		
+		LoginService loginService = new LoginService();
+		boolean result = loginService.authenticate(userId, password);
+		
+		if (result){
+			response.sendRedirect("success.jsp");
+			return;
+		} else {
+			response.sendRedirect("login.jsp");
+			return;
+		}
+		
+		
 	}
 
 }
